@@ -1,0 +1,181 @@
+@font-face {
+    font-family: Gotham;
+    src: url("fonts/Gotham-Thin-Regular.otf") format("opentype");
+
+}
+
+
+body {
+    font-family: 'Gotham';
+    background: rgba(255, 255, 255, 0.60);
+
+    background: url('images/background.png'), lightgray 50% / cover no-repeat;
+    backdrop-filter: blur(7px);
+}
+.main{
+    padding:20px;
+    font-family: 'Gotham';
+    box-shadow: 5px 5px 7px 5px #888888;
+     
+}
+.main h1{
+    font-size: 40px;
+    text-align:center;
+     
+}
+label {
+}
+
+input{
+    width: 100%;
+    font-size: 20px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 2px solid #767474;
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #767474;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    border-radius: 10px;
+}
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+  }
+
+.form-submit {
+    width: 60%;
+}
+
+.btn-submit {
+    float: right;
+    font-family: 'Gotham', sans-serif;
+    background-color: green;
+    border-color: green;
+    border-radius: 15px;
+    padding: 12px;
+    text-align: center;
+}
+
+.input-fields {
+    border-radius: 15px;
+    padding: 20px;
+    height: 50px;
+}
+
+
+.main-form {
+    background-color: white;
+    height: 100vh;
+    width: 100vh;
+}
+
+.submission-div {
+    padding-top: 20pc;
+}
+
+.shadow {
+    border-top: 1px;
+    box-shadow: 5px 5px 10px rgba(0,0,0, 0.3);
+}
+
+
+.total-messages {
+    position: absolute;
+    bottom: 200px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* tree css*/
+
+.tree-container {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 40px;
+    justify-content: space-around;
+  }
+  
+  .result-tree {
+    width: 35px;
+    height: 100vh;
+    background-color: saddlebrown;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 40px;
+  }
+  
+  .branches {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 40px;
+  }
+  
+  .branch {
+    height: 25px;
+    background-color: peru;
+    border-radius: 10px;
+    display: flex;
+  }
+  
+  .result-tree .cat-branch-r {
+    display: flex;
+    justify-content: flex-end;
+    transform: rotate(-30deg);
+  }
+  
+  .result-tree .cat-branch-l {
+    margin-left: 40px;
+    margin-right: -30px;
+    justify-content: flex-end;
+    /*justify-content: left;*/
+    transform: rotate(-130deg);
+  }
+  
+  .result-tree .cat-branch-r .leaf {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    border-radius: 100% 0 100% 0;
+    transform: translateY(-100%);
+  }
+  
+  .result-tree .cat-branch-l .leaf {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    border-radius: 100% 0 100% 0;
+    transform: translateY(50%) rotate(90deg);
+  }
+  
+  .result-tree .cat-branch-r:hover {
+    height: 25px;
+    background-color: rgb(214, 189, 164);
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    transform: rotate(-30deg);
+  }
+  
+  .result-tree .cat-branch-r .leaf:hover {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(42, 173, 42);
+    border-radius: 100% 0 100% 0;
+    transform: translateY(-100%);
+  }
+  /*** tree css *///
