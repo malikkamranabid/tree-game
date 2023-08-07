@@ -5,7 +5,8 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
    
@@ -34,61 +35,44 @@
 
 
 
-        <div class="tree-container col-md-7 " style="bottom: 0;" >
-
-            <figure class="result-tree">
-              <div class="branches branches-l">
-                <div data-toggle="tooltip" data-placement="top" title="Grab Bag" class="branch cat-branch-l" style="width: 180px">
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                </div>
-              </div>
-              <div class="branches branches-r">
-                <div data-toggle="tooltip" data-placement="top" title="Cognitive" class="branch cat-branch-r" style="width: 150px">
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                </div>
-                <div data-toggle="tooltip" data-placement="top" title="Physical" class="branch cat-branch-r" style="width: 200px">
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                </div>
-                <div data-toggle="tooltip" data-placement="top" title="Social Emotional" class="branch cat-branch-r" style="width: 180px">
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                </div>
-                <div data-toggle="tooltip" data-placement="top" title="Spiritual" class="branch cat-branch-r" style="width: 130px">
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                  <span class="leaf"></span>
-                </div>
-              </div>
-            </figure>
-        </div>
-<div>
-        <div class=" d-none d-md-block col-md-2 mt-5 ml-2">
-            <img  height="100px" width="200px" src="images/logotwo.png" alt="Youth Councils" />
-        </div>
-
-     <div class=" d-none d-md-block col-md-2 mt-5 ml-2">
-        <img  height="100px" width="200px" src="images/logoone.png" alt="Youth Councils" />
-    </div>
+        <div class="tree-container col-md-12 " style="bottom: 0;" >
+            <div class="leaf-icon">
 
 
 
-    <div class="d-none d-md-block col-md-2 mt-5 ml-2 total-messages" style="background-color:white;">
-        <p> Messages recieved</p>
-    </div>
+            </div>
+      
+
+            <div class="messages-box">
+                <div class=" d-none d-md-block col-md-2 mt-5 ml-2">
+                    <img  height="100px" width="200px" src="images/logotwo.png" alt="Youth Councils" />
+                </div>
+        
+             <div class=" d-none d-md-block col-md-2 mt-5 ml-2">
+                <img  height="100px" width="200px" src="images/logoone.png" alt="Youth Councils" />
+            </div>
+        
+        
+        
+            <div class="d-none d-flex d-md-block col-md-3 mt-5 ml-2 total-messages" >
+                <div class="d-block justify-content-evenly message-dailog">
+                    <p style="font-family: 'Gotham';">
+                        Together we can move toward a sustainable world, how can you contribute?
+                    </p>
+                    <div class="d-flex">
+                        <i class="fa fa-envelope"  style="font-size:40px;color: green;margin-right: 5px;" aria-hidden="true"></i>
+                        <div style="display: block;">
+                            <p style="line-height: 2pc;"> Messages Recieved</p>   
+                            <p style="font-family: 'Gotham';font-size: 20px;" id="totalMessages"> 0</p>     
+                        </div>
+                    </div>
+             
+            
+                </div>
+          
+            </div>
+            </div>
+       
  
 </div>
 
@@ -97,18 +81,37 @@
     </div>
 </body>
 </html>
-
+<script src="/socket.io/socket.io.js"></script>
 <script>
+var socket = io('http://localhost:3000');
+let dataLength = 0;
+    $(function(){ 	
 
+        let margin = 0;
 
-//     $(function(){ 	
+        socket.on('load', message => {
+            margin = margin+1;
+            dataLength = dataLength + 1;
+            console.log(`this is data length`,dataLength);
+             $('#totalMessages').text(dataLength);
+            $(".leaf-icon").prepend(`<i class="fa fa-leaf fa-rotate-45" style="font-size:24px;color:green;margin-left:${margin}px"></i>`);
+        })
+        
+        $.ajax({
+            type: "GET",
+            url: "treedata",
 
-//         $("#btn").click(function(e) {
-//     $('#mymodel').modal('show'); 
+            success: function(data){
+                $('#totalMessages').text(data.length);
+                dataLength  = data.length;
+                if(data.length > 0) {
+                    margin = margin+1;
+                    data.map(a => {
+                        $(".leaf-icon").prepend(`<i class="fa fa-leaf fa-rotate-45" style="font-size:24px;color:green;margin-left:${margin}px"></i>`);
+                    })
 
-// });
-
-
-   
-//     })
+                } 
+            }
+        });
+    })
 </script>

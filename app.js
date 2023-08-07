@@ -3,13 +3,12 @@ var express=require("express");
 var bodyParser=require("body-parser");
 var cors = require('cors');
 var path = require ('path');
-const http = require('http')
-const socketio = require('socket.io')
-const server = http.createServer(app);
-const io = socketio(server);
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/gfg');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 var db=mongoose.connection;
@@ -18,7 +17,7 @@ db.once('open', function(callback){
     console.log("connection succeeded");
 })
  
-var app=express()
+
 app.use(cors())
  
 // set the view engine to ejs
@@ -73,6 +72,25 @@ app.get('/tree',function(req,res){
         });
     
 });
+
+
+app.get('/treedata',async function(req,res){
+    const tasks = await db.collection("details").find({}).toArray();
+    res.status(200).json(tasks);
+});
+
+
+io.on('connection', (socket) => {
+    console.log('user connected');
+    socket.on('disconnect', function () {
+      console.log('user disconnected');
+    });
+    socket.on('submit', message => {
+        io.emit('load', message)
+    })
+})
  
-app.listen(PORT, () => console.log(`Hello world app listening on port ${PORT}!`));
-console.log("server listening at port 3000");
+
+server.listen(PORT, function() {
+    console.log(`Listening on port ${PORT}`);
+});

@@ -41,7 +41,7 @@
 <% if (!show_modal) { %>
     <div class="container d-flex justify-content-center main-form">
 
-        <form action="/formFillUp" method="POST" class="form-submit  mt-5">
+        <form action="/formFillUp" id="form" method="POST" class="form-submit  mt-5">
             <div class="form-row mt-5">
                 <div class="form-group col-12">
                     <label for="inputName">
@@ -78,17 +78,15 @@
 </body>
 </html>
 
+
+
+<script src="/socket.io/socket.io.js"></script>
 <script>
+        var socket = io();
+        $(function(){ 	
+            $("#form").submit(function(e) {
+                socket.emit('submit', {message: 'a new client connected'})
+            });
+        })
 
-
-//     $(function(){ 	
-
-//         $("#btn").click(function(e) {
-//     $('#mymodel').modal('show'); 
-
-// });
-
-
-   
-//     })
 </script>
