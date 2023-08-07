@@ -8,7 +8,7 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/gfg');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5001;
 
 
 var db=mongoose.connection;
