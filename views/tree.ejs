@@ -86,6 +86,7 @@
 <script>
 var socket = io();
 let dataLength = 0;
+let degree = 40;
     $(function(){ 	
 
         let margin = 0;
@@ -106,9 +107,11 @@ let dataLength = 0;
                 $('#totalMessages').text(data.length);
                 dataLength  = data.length;
                 if(data.length > 0) {
-                    margin = margin+1;
+                
                     data.map(a => {
-                        $(".leaf-icon").prepend(`<i class="fa fa-leaf fa-rotate-45" style="font-size:24px;color:green;margin-left:${margin}px"></i>`);
+                         margin = margin+0.3;
+                        degree = degree+0.5;
+                        $(".leaf-icon").prepend(`<i class="fa fa-leaf" style="transform:rotate(${degree}deg);font-size:24px;color:green;margin-left:${margin}px"></i>`);
                     })
 
                 } 

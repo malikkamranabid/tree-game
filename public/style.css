@@ -111,17 +111,12 @@ input[type=submit] {
 
 .leaf-icon {
     position: fixed;
-    top: 250px;
+    top: 30%;
     z-index: 1;
-    width: 50%;
+    width: 40%;
+    max-width: 40%;
 }
 
-
-.fa-rotate-45 {
-    -ms-transform:rotate(45deg);     /* Internet Explorer 9 */
-    -webkit-transform:rotate(45deg); /* Chrome, Safari, Opera */
-    transform:rotate(45deg);         /* Standard syntax */
-}
 
 .message-dailog {
     justify-content: space-evenly;
@@ -144,85 +139,3 @@ input[type=submit] {
     margin-right: 10pc;
     margin-top: 1pc;
 }
-
-/* tree css*/
-
-/* .tree-container {
-    display: flex;
-    margin-top: 40px;
-    margin-left: 40px;
-    justify-content: space-around;
-  } */
-  
-  .result-tree {
-    width: 35px;
-    height: 100vh;
-    background-color: saddlebrown;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-bottom: 40px;
-  }
-  
-  .branches {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-bottom: 40px;
-  }
-  
-  .branch {
-    height: 25px;
-    background-color: peru;
-    border-radius: 10px;
-    display: flex;
-  }
-  
-  .result-tree .cat-branch-r {
-    display: flex;
-    justify-content: flex-end;
-    transform: rotate(-30deg);
-  }
-  
-  .result-tree .cat-branch-l {
-    margin-left: 40px;
-    margin-right: -30px;
-    justify-content: flex-end;
-    /*justify-content: left;*/
-    transform: rotate(-130deg);
-  }
-  
-  .result-tree .cat-branch-r .leaf {
-    width: 40px;
-    height: 40px;
-    background-color: green;
-    border-radius: 100% 0 100% 0;
-    transform: translateY(-100%);
-  }
-  
-  .result-tree .cat-branch-l .leaf {
-    width: 40px;
-    height: 40px;
-    background-color: green;
-    border-radius: 100% 0 100% 0;
-    transform: translateY(50%) rotate(90deg);
-  }
-  
-  .result-tree .cat-branch-r:hover {
-    height: 25px;
-    background-color: rgb(214, 189, 164);
-    border-radius: 10px;
-    display: flex;
-    justify-content: flex-end;
-    transform: rotate(-30deg);
-  }
-  
-  .result-tree .cat-branch-r .leaf:hover {
-    width: 40px;
-    height: 40px;
-    background-color: rgb(42, 173, 42);
-    border-radius: 100% 0 100% 0;
-    transform: translateY(-100%);
-  }
-  /*** tree css */
