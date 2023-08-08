@@ -5,6 +5,8 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -30,16 +32,18 @@
 <body>
 
     <div class="main-div-2">
+      
     </div>
 
     <div class="d-flex main main-div-3">
 
-
-
+    
         <div class="tree-container col-md-12" id = "treeContainer" style="bottom: 0;" >
-
+           
+    
           
             <div class="leaf-icon up" id="leaves">
+                
                 <p>
                 </p>
 
@@ -65,7 +69,7 @@
                     <div class="d-flex">
                         <i class="fa fa-envelope"  style="font-size:40px;color: green;margin-right: 5px;" aria-hidden="true"></i>
                         <div style="display: block;">
-                            <p style="line-height: 2pc;"> Messages Recieved</p>   
+                            <p style="line-height: 2pc;"> Thoughts Shared</p>   
                             <p style="font-family: 'Gotham';font-size: 20px;" id="totalMessages"> 0</p>     
                         </div>
                     </div>
@@ -82,7 +86,24 @@
   
         </div>
     </div>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+   
+            <div class="modal-body d-flex"  style="width:600px;max-width: 600px;padding:2pc;border-radius: 30px!important;" >
+                <div style="margin-right: 4pc;">
+                    <i class="fa fa-envelope message-model-icon"  style="font-size:40px;color: green;margin-right: 5px;" aria-hidden="true"></i>
+                </div>
+                <div>
+                    <p class="submission-name" id="name">Hala</p>
+                    <p class="submission-content" id="message">Trade-in values will vary based on the condition, year, and configuration of your eligible trade-in device. Not all devices are eligible for credit. You must be at least 18 years old to be eligible to trade in for credit or for an Apple Store Gift Card. Trade-in value may be applied toward qualifying new device purchase, or added to an Apple Store Gift Card.</p>
+                </div>
 
+            </div>
+    
+          </div>
+        </div>
+      </div>
 </body>
 </html>
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
@@ -120,16 +141,28 @@ let degree = 0;
 let i =0;
     $(function(){ 	
 
+ 
         let margin = 0;
 
         socket.on('load', message => {
+            console.log(`new message`,message);
+            $('#name').text(message.message.name);
+            $('#message').text(message.message.message);
             margin = margin+0.2;
             dataLength = dataLength + 1;
             degree = degree+1;
              $('#totalMessages').text(dataLength);
-            $(".leaf-icon").prepend(`<i class="fa fa-leaf fa-rotate-45" style="left:${Math.random() * $("#treeContainer").outerWidth};top:${Math.random() * $("#treeContainer").outerHeight};font-size:24px;color:green;margin-left:0px"></i>`);
+             $(".leaf-icon p").prepend(`<i class="fa fa-leaf" style="transform:rotate(${Math.random()+(1*10)}deg);font-size:14px;color:green;margin-left:${Math.random()+5}px;padding-top:${Math.random()+1}px;padding-bottom:${Math.random()+1}px;padding-left:${Math.random()+1}px;padding-right:${Math.random()+1}px;position:relative;"></i>`);          
+             $('#myModal').modal();
+             setTimeout(function()
+                {
+
+                    $('#myModal').modal('hide');
+
+                }, 5000);
+      
+
         })
-   
         
         $.ajax({
             type: "GET",

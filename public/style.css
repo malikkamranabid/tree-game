@@ -159,7 +159,9 @@ input[type=submit] {
 
 .message-dailog {
     justify-content: space-evenly;
-    padding: 10px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
 
 }
 .tree-container {
@@ -206,3 +208,46 @@ input[type=submit] {
   margin: 0px;
 }
 
+.modal {
+    text-align: center;
+}
+
+.modal::before {
+    content: "";      
+    display: inline-block;
+    height: 100%;    
+    margin-right: -4px;
+    vertical-align: middle;
+}
+
+.modal-dialog { 
+    display: inline-block;  
+    text-align: left;   
+    vertical-align: middle;
+}
+
+.submission-name {
+    color: var(--neutral-06, #181B21);
+    font-family: Gotham;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px; /* 46.512% */
+}
+
+.submission-content {
+    color: var(--neutral-06, #181B21);
+    font-family: Gotham;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+
+}
+
+.message-model-icon {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
