@@ -35,10 +35,12 @@
 
 
 
-        <div class="tree-container col-md-12 " style="bottom: 0;" >
-            <div class="leaf-icon">
+        <div class="tree-container col-md-12" id = "treeContainer" style="bottom: 0;" >
 
-
+          
+            <div class="leaf-icon up" id="leaves">
+                <p>
+                </p>
 
             </div>
       
@@ -84,20 +86,48 @@
 <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
 
 <script>
+
+// var img = new Image;
+// img.src = $('#treeContainer').css('background-image').replace(/url\(|\)$/ig, "");
+// var bgImgWidth = img.width;
+// var bgImgHeight = img.height;
+// alert(bgImgWidth)
+// alert(bgImgHeight)
+
+
+$.fn.getBgImage = function(callback) {
+    var height = 0;
+    var path = $(this).css('background-image').replace('url', '').replace('(', '').replace(')', '').replace('"', '').replace('"', '');
+    var tempImg = $('<img />');
+    tempImg.hide(); //hide image
+    tempImg.bind('load', callback);
+    $('body').append(tempImg); // add to DOM before </body>
+    tempImg.attr('src', path);
+    $('#tempImg').remove(); //remove from DOM
+};
+
+$("#treeContainer").getBgImage(function() {
+     $(".leaf-icon").css({"maxWidth": $(this).width() - 100});
+});
+
+
+
 var socket = io();
 let dataLength = 0;
-let degree = 40;
+let degree = 0;
+let i =0;
     $(function(){ 	
 
         let margin = 0;
 
         socket.on('load', message => {
-            margin = margin+1;
+            margin = margin+0.2;
             dataLength = dataLength + 1;
-            console.log(`this is data length`,dataLength);
+            degree = degree+1;
              $('#totalMessages').text(dataLength);
-            $(".leaf-icon").prepend(`<i class="fa fa-leaf fa-rotate-45" style="font-size:24px;color:green;margin-left:${margin}px"></i>`);
+            $(".leaf-icon").prepend(`<i class="fa fa-leaf fa-rotate-45" style="left:${Math.random() * $("#treeContainer").outerWidth};top:${Math.random() * $("#treeContainer").outerHeight};font-size:24px;color:green;margin-left:0px"></i>`);
         })
+   
         
         $.ajax({
             type: "GET",
@@ -109,10 +139,13 @@ let degree = 40;
                 if(data.length > 0) {
                 
                     data.map(a => {
-                         margin = margin+0.3;
-                        degree = degree+0.5;
-                        $(".leaf-icon").prepend(`<i class="fa fa-leaf" style="transform:rotate(${degree}deg);font-size:24px;color:green;margin-left:${margin}px"></i>`);
+                         margin = Math.random()+1;
+                         console.log(margin);
+                        degree = Math.random()+1;
+                            $(".leaf-icon p").prepend(`<i class="fa fa-leaf" style="transform:rotate(${Math.random()+30}deg);font-size:14px;color:green;margin-left:${Math.random()+5}px"></i>`);                       
+                        i++;
                     })
+           
 
                 } 
             }

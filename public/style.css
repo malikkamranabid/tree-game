@@ -109,13 +109,15 @@ input[type=submit] {
     box-shadow: rgba(0,0,0,0.8) 0 0 10px;
 }
 
-.leaf-icon {
+/* .leaf-icon {
     position: fixed;
     top: 30%;
+    left: 10%;
     z-index: 1;
     width: 40%;
     max-width: 40%;
-}
+    transform: rotate(18deg);
+} */
 
 
 .message-dailog {
@@ -139,3 +141,30 @@ input[type=submit] {
     margin-right: 10pc;
     margin-top: 1pc;
 }
+
+
+.up {
+  width: 0px;
+  height: 0px;
+  border-style: inset;
+  border-width: 0 100px 173.2px 100px;
+  border-color: transparent transparent transparent transparent;
+  float: left;
+  margin-left: -7%;
+  transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+}
+
+.up p {
+  text-align: center;
+  top: 270px;
+  left: -47px;
+  position: relative;
+  width: 500px;
+  height: 93px;
+  margin: 0px;
+}
+
