@@ -70,6 +70,7 @@ input{
     width: 100%;
     font-size: 20px;
     padding: 12px 20px;
+
     margin: 8px 0;
     border: none;
     border-bottom: 2px solid #767474;
@@ -110,6 +111,12 @@ input[type=submit] {
     border-radius: 15px;
     padding: 20px;
     height: 50px;
+
+}
+
+.label {
+
+    font-family: GothamBold;
 }
 
 
