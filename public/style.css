@@ -39,7 +39,15 @@ div.jQKeyboardContainer {
     position: absolute;
     left: 30%;
     bottom: 100px;
+    background: none;
+    box-shadow: none;
 }
+
+button.jQKeyboardBtn {
+    color:black;
+    background-color: white;
+}
+
 
 .main-div {
     height: 100%; 
