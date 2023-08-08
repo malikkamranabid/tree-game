@@ -15,13 +15,48 @@
 
 body {
     font-family: 'Gotham';
-    background: rgba(255, 255, 255, 0.60);
+    /* background: rgba(255, 255, 255, 0.60); */
+    opacity: 0.8;
 
-    background: url('images/background.png'), lightgray 50% / cover no-repeat;
-    backdrop-filter: blur(7px);
+    /* background: url('images/back-out.jpeg')  lightgray 0% 0% / 100px 100px cover no-repeat; */
 }
+/* .main-div-1 {
+    /* background: url('images/background.png')  lightgray 0% 0% / 100px 100px cover no-repeat;
+    backdrop-filter: blur(7px); */
+/*
+    width: 100%;
+    height: 768px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+
+} */
+
+.main-div-2 {
+    width: 100%;
+    height: 100vh;
+    background: url('images/background.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    overflow: hidden;
+}
+
+.main-div-3 {
+    width: 100%;
+    background: rgba(255,255,255,0.6000000238418579);
+    opacity: 1;
+    position: absolute;
+    height: 100vh;
+}
+
 .main{
-    padding:20px;
     font-family: 'Gotham';
     box-shadow: 5px 5px 7px 5px #888888;
      
