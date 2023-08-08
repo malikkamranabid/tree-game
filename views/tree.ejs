@@ -145,25 +145,16 @@ let i =0;
         let margin = 0;
 
         socket.on('load', message => {
-            console.log(`new message`,message);
+            dataLength = dataLength + 1;
+            if(dataLength > 0 )  {
+                $("#treeContainer").css('background-image', 'url(' + `images/${dataLength}.png `+ ')');
+            }    
             $('#name').text(message.message.name);
             $('#message').text(message.message.message);
-            margin = margin+0.2;
-            dataLength = dataLength + 1;
-            degree = degree+1;
-             $('#totalMessages').text(dataLength);
-             $(".leaf-icon p").prepend(`<i class="fa fa-leaf" style="transform:rotate(${Math.random()+(1*10)}deg);font-size:14px;color:green;margin-left:${Math.random()+5}px;padding-top:${Math.random()+1}px;padding-bottom:${Math.random()+1}px;padding-left:${Math.random()+1}px;padding-right:${Math.random()+1}px;position:relative;"></i>`);          
-             $('#myModal').modal();
-             setTimeout(function()
-                {
-
-                    $('#myModal').modal('hide');
-
-                }, 5000);
-      
-
-        })
-        
+            $('#totalMessages').text(dataLength);
+            $('#myModal').modal();
+            setTimeout(function(){ $('#myModal').modal('hide'); }, 5000);
+        })   
         $.ajax({
             type: "GET",
             url: "treedata",
@@ -172,17 +163,7 @@ let i =0;
                 $('#totalMessages').text(data.length);
                 dataLength  = data.length;
                 if(data.length > 0) {
-                
-                    data.map(a => {
-                         margin = Math.random()+1;
-                         console.log(margin);
-                        degree = Math.random()+1;
-                            $(".leaf-icon p").prepend(`<i class="fa fa-leaf" style="transform:rotate(${Math.random()+(i*10)}deg);font-size:14px;color:green;margin-left:${Math.random()+5}px;padding-top:${Math.random()+i}px;padding-bottom:${Math.random()+i}px;padding-left:${Math.random()+1}px;padding-right:${Math.random()+1}px;position:relative;"></i>`);                       
-                        i++;
-                        if(i > 10) i =0;
-                    })
-           
-
+                    $("#treeContainer").css('background-image', 'url(' + `images/${dataLength}.png `+ ')');
                 } 
             }
         });
